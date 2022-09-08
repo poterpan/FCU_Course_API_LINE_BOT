@@ -18,6 +18,8 @@ config.read('config.ini')
 line_bot_api = LineBotApi(config.get('line-bot', 'channel_access_token'))
 handler = WebhookHandler(config.get('line-bot', 'channel_secret'))
 
+user_id = 'Uf78f7decc8f4f1d618aa935553c16f9c'
+
 
 # 接收 LINE 的資訊
 @app.route("/callback", methods=['POST'])
@@ -41,6 +43,11 @@ def callback():
 def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
+
+
+@app.route("/push_function/<string:push_text_str>")
+def push_message(push_text_str):
+    line_bot_api.push_message(user_id, TextSendMessage(text=push_text_str))
 
 
 @app.route('/')
