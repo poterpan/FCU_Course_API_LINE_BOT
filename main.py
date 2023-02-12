@@ -49,6 +49,8 @@ def handle_message(event):
 def push_message(push_text_str):
     line_bot_api.push_message(user_id, TextSendMessage(text=push_text_str))
 
+    return 'OK'
+
 
 @app.route('/')
 def index():
