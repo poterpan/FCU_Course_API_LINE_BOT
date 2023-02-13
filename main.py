@@ -53,7 +53,7 @@ def push_message(push_text_str):
 
 
 @app.route("/push_to_user/<string:target_id>/<string:push_text_str>")
-def push_message(target_id, push_text_str):
+def push_message_to_user(target_id, push_text_str):
     line_bot_api.push_message(target_id, TextSendMessage(push_text_str))
 
     return 'OK'
