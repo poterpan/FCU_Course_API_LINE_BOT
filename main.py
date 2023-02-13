@@ -41,8 +41,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
-    line_bot_api.reply_message(event.reply_token, message)
+    # get user id when reply
+    sender_id = event.source.user_id
+    print("user_id =", sender_id)
+
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text='您的user ID為: '+sender_id))
 
 
 @app.route("/push_function/<string:push_text_str>")
