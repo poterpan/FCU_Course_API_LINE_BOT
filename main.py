@@ -52,6 +52,13 @@ def push_message(push_text_str):
     return 'OK'
 
 
+@app.route("/push_to_user/<string:target_id>/<string:push_text_str>")
+def push_message(target_id, push_text_str):
+    line_bot_api.push_message(target_id, TextSendMessage(push_text_str))
+
+    return 'OK'
+
+
 @app.route('/')
 def index():
     return 'Hello World'
